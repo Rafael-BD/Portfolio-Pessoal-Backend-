@@ -5,19 +5,19 @@ const fetchGitHubRepositories = async () => {
         const response = await axios.post('https://api.github.com/graphql', {
         query: `
             query {
-            viewer {
-                pinnedItems(first: 5, types: REPOSITORY) {
-                edges {
-                    node {
-                    ... on Repository {
-                        name
-                        description
-                        url
+                viewer {
+                    pinnedItems(first: 5, types: REPOSITORY) {
+                    edges {
+                        node {
+                        ... on Repository {
+                            name
+                            description
+                            url
+                        }
+                        }
                     }
                     }
                 }
-                }
-            }
             }
         `,
         }, {
