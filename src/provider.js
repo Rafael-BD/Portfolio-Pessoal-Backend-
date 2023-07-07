@@ -6,13 +6,17 @@ const fetchGitHubRepositories = async () => {
         query: `
             query {
                 viewer {
-                    pinnedItems(first: 5, types: REPOSITORY) {
+                    pinnedItems(first: 10, types: REPOSITORY) {
                     edges {
                         node {
                         ... on Repository {
                             name
                             description
                             url
+                            createdAt
+                            primaryLanguage {
+                            name
+                            }
                         }
                         }
                     }
@@ -29,7 +33,6 @@ const fetchGitHubRepositories = async () => {
         const repositories = response.data.data.viewer.pinnedItems.edges.map(
         (edge) => edge.node
         );
-
         return repositories;
     } catch (error) {
         console.error('Failed to fetch GitHub repositories:', error);
