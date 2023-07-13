@@ -8,6 +8,11 @@ const { resolvers } = require('./src/resolvers');
 const app = express();
 const cors = require('cors');
 
+app.use(cors({
+  origin: '*',
+  methods: 'GET,POST',
+}));
+
 app.use(
   '/graphql',
   graphqlHTTP({
@@ -16,10 +21,7 @@ app.use(
     graphiql: true,
   })
 );
-app.use(cors({
-  origin: '*',
-  methods: 'GET,POST',
-}));
+
 
 const PORT = process.env.PORT || 3001;
 
