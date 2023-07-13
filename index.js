@@ -16,7 +16,10 @@ app.use(
     graphiql: true,
   })
 );
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: 'GET,POST',
+}));
 
 const PORT = process.env.PORT || 3001;
 
